@@ -11,7 +11,7 @@ const authUser = async (req,res,next)=>{
     if(!token){
         throw new Error("unauthorised access, please log innnnn");
     }
-    const userId = await jwt.verify(token,"devtinder@1");
+    const userId = await jwt.verify(token,process.env.JWT_SECRET);
 
     if(!userId){
         throw new Error("user not defined");

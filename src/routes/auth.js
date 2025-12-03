@@ -5,7 +5,6 @@ const { User } = require("../models/user");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-const secret = "devtinder@1";
 router.post("/signup", async (req,res)=>{
 
     // validation of data

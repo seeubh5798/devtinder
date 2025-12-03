@@ -3,6 +3,7 @@ const { authUser } = require("../middlewares/auth");
 const { ConnectionRequest } = require("../models/connectionRequest");
 const { User } = require("../models/user");
 
+const { sendEmail } = require("./../utils/sendEmail")
 const router = express.Router();
 
 
@@ -37,6 +38,8 @@ router.post("/send/:status/:toUserId", authUser, async (req,res)=>{
         const dbobj = new ConnectionRequest({fromUserId, toUserId, status});
 
         const data = await dbobj.save();
+        const emailres = await sendEmail();
+        console.log(emailres)
 
         res.status(202).json({"message": `${req.user.firstName} ${status} ${toUserExist.firstName}`,
             data});

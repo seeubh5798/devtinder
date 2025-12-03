@@ -1,4 +1,5 @@
 console.log("dev tinder backend 1")
+require("dotenv").config();
 const express = require('express');
 const  {connectDb} = require("./config/database");
 const {User} = require("./models/user");

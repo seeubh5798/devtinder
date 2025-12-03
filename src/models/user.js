@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
-const secret = "devtinder@1";
+
 const userSchema = new mongoose.Schema({
         firstName : {
             type : String,
@@ -61,12 +61,12 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.createJWT = async function(){
     const user = this;
-    const token = await jwt.sign({_id : user._id}, secret);
+    const token = await jwt.sign({_id : user._id}, process.env.JWT_SECRET);
     return token;
 }
 
 const User = mongoose.model("User", userSchema);
-console.log(User)
+// console.log(User)
 // model is created using schema, model is basically 
 
 

@@ -19,7 +19,7 @@ router.get("/feed", authUser ,async (req,res)=>{
         const connectionstouser = await ConnectionRequest.find({
             $or : [ {fromUserId : loggedIn._id}, {toUserId : loggedIn._id}]
         }).select("fromUserId toUserId");
-        console.log(connectionstouser);
+        // console.log(connectionstouser);
         const set = new Set();
         connectionstouser.forEach((connection)=>{
             set.add(connection.fromUserId.toString());
@@ -129,11 +129,11 @@ router.post("/withdraw/:reqId", authUser,  async (req, res)=>{
         // const loggedInUser = req.user;
         const reqId = req.params.reqId;
         // console.log("logged user", loggedInUser._id)
-        console.log("reqId", reqId)
+        // console.log("reqId", reqId)
         const dbres = await ConnectionRequest.findByIdAndDelete({ _id : reqId
         });
 
-        console.log(dbres);
+        // console.log(dbres);
         res.status(200).json({
             "message" : "removed successfully"
         })
