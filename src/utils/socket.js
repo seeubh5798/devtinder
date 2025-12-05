@@ -17,13 +17,13 @@ function initializeSocket(httpServer){
             
             // const roomId = "uniqueid";
             const roomId = [userId,targetUserId].sort().join("_");
-            console.log(name + "joined room-" + roomId);
+            // console.log(name + "joined room-" + roomId);
             socket.join(roomId)
         });
 
         socket.on("sendmessage", async ({name,userId,targetUserId,text})=>{
             const roomId = [userId,targetUserId].sort().join("_");
-            console.log(name+ " has sent msg: "+text +" to roomid: "+roomId);
+            // console.log(name+ " has sent msg: "+text +" to roomid: "+roomId);
 
             // save msg to database
             try{
@@ -47,7 +47,7 @@ function initializeSocket(httpServer){
                     text : text
                 });
                 const res = await chat.save();
-                console.log("message saved response", res);
+                // console.log("message saved response", res);
             }
             catch(e){
                 console.log(e)
